@@ -1,0 +1,50 @@
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include "PIDManager.h"
+
+int MAX_PID = 2000;
+int  MIN_PID = 400;
+int PID_RANGE = 6700;
+int pid_map[6700];
+
+int p_map();
+
+int p_pid();
+
+void rel_pid(int pid);
+
+int p_map() 
+{
+	for(int i = 0; i < MAX_PID; i++) {
+		pid_map[i] = 0;
+	}
+	return 1;
+}
+
+int p_pid() {
+	for(int i = 0; i < MAX_PID; i++) {
+		if(pid_map[i] == 0) {
+			pid_map[i] = 1;
+			return i + MIN_PID;
+		}
+	}
+	return 1;
+}
+
+void rel_pid(int pid) {
+	pid_map[MIN_PID + pid] = 0;
+}
+
+
+
+int main()
+ {
+ 	p_map();
+	int j = p_pid();
+printf("Allocated PID %d \n", j);
+	rel_pid(j);
+	int j = p_pid();
+	fprintf(stdout, "Allocated PID: %d \n", j);
+	rel_pid(j);
+ } 
