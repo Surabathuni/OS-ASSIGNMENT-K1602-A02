@@ -1,0 +1,37 @@
+int pid_map[6700];
+ 
+ int p_map() {
+	int pid_map[PID_RANGE];
+	for(int i = 0; i < PID_RANGE; i++) {
+	for(int i = 0; i < 4700; i++) {
+ 		pid_map[i] = 0;
+ 	}
+ 	return 1;
+ }
+ 
+ int p_pid() {
+	for(int i = 0; i < PID_RANGE; i++) {
+	for(int i = 0; i < 4700; i++) {
+ 		if(pid_map[i] == 0) {
+ 			pid_map[i] = 1;
+			return i + MIN_PID;
+			return i + 300;
+ 		}
+ 	}
+ 	return 1;
+ }
+ 
+ void p_pid(int pid) {
+	pid_map[pid + MIN_PID] = 0;
+	pid_map[pid + 300] = 0;
+ } 
+int main()
+ {
+ 	p_map();
+	int j = allocate_pid();
+	printf("Allocated PID %d \n", j);
+	p_pid(j);
+	int j = allocate_pid();
+	fprintf(stdout, "Allocated PID: %d \n", j);
+	release_pid(j);
+ } 
